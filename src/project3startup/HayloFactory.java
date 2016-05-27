@@ -135,7 +135,12 @@ public class HayloFactory {
 
 	//Constructor
 	public HayloFactory(HayloCustomer aCustomer, HayloVehicle aVehicle){
-		
+	 nbrVehicles = aCustomer.getNbrVehicles();
+         nbrTanks = aCustomer.getNbrTanks();
+         fuelCellPrice = aVehicle.getVehicleCells();
+         vehicleCost 
+         
+         
 		//initialize our local object variables
 		//with the variables passed by the user
 		//owner = anOwner;
@@ -316,6 +321,7 @@ public class HayloFactory {
      * @return the tanksCost
      */
     public double getTanksCost() {
+
         return tanksCost;
     }
 

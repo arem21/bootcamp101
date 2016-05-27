@@ -5,18 +5,21 @@ public class HayloVehicle {
 	private int nbrCells;
 
 	public HayloVehicle(String aType,int aNbrCells){
+            type = aType;
+            nbrCells = aNbrCells;
 
 	}
 	
-	/*uncomment these methods and write code for them
 	public String getVehicleType(){
+            return type;
 
 	}
 	
 	public int getVehicleCells(){
+            return nbrCells;
 
 	}
-	*/
+	
 	
 	public String toString(){
 		String summary="-------------\n";

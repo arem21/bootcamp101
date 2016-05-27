@@ -11,11 +11,14 @@ public class HayloFactoryController {
     public static void main(String[] args) {
         HayloValidate hv = new HayloValidate();
         //create variables to hold information collected from the user
-        String fn;
-        String ln;
-        String phone;
-        int nbrVechiles;
-        int nbrTanks;
+        String fn = "";
+        String ln = "";
+        String phone = "";
+        String nbrVehicles = "";
+        String nbrTanks = "";
+        int knownVehicles =0;
+        int knownTanks =0;
+
         do {
 
             //collect the data entered by the user in 
@@ -34,15 +37,24 @@ public class HayloFactoryController {
                     JOptionPane.showInputDialog(customerMsg));
 
             //store each token in the corresponding variable
-            fn = tkCustomer.nextToken();
-            ln = tkCustomer.nextToken();
-            phone = tkCustomer.nextToken();
-            nbrVechiles = Integer.parseInt(tkCustomer.nextToken());
-            nbrTanks = Integer.parseInt(tkCustomer.nextToken());
-         
-            //validate each data entered here
+            if (tkCustomer.countTokens() == 5) {
+                fn = tkCustomer.nextToken();
+                ln = tkCustomer.nextToken();
+                phone = tkCustomer.nextToken();
+                nbrVehicles = tkCustomer.nextToken();
+                nbrTanks = tkCustomer.nextToken();
+                fn = hv.getValidName(fn);
+                fn = hv.getValidName(ln);
+                phone = hv.getValidNumber(phone);
+                knownVehicles = hv.checkVehicles(nbrVehicles);
+                knownTanks = hv.checkTanks(nbrTanks);
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid Input");
+                System.exit(0);
+            }
             //Create a customer Object
-            //CustomerObject variableName = new CustomerObject(arguments)
+            HayloCustomer hc = new HayloCustomer(fn, ln, phone, knownVehicles, knownTanks);
+
             //Present the customer with a choice of vehicles
             String[] choices = {"EV-EX 4", "EV-EX 6", "EV-DX 9", "EV-DX 12", "EV-SX 13"};
 
@@ -58,14 +70,14 @@ public class HayloFactoryController {
             );
             //get the selection from the customer
             StringTokenizer tkVehicle = new StringTokenizer(choices[response]);
+            String vehicleType = tkVehicle.nextToken();
+            int fuelCell = Integer.parseInt(tkVehicle.nextToken());
+            HayloVehicle hVehicle = new HayloVehicle(vehicleType, fuelCell);
 
-            //populate the vehicle variables
-            //??????????????????????
-            //Create our vehicle object
-            //VehicleObject variableName = new VehicleObject(arguments)
             //Create our factory object
-            //FactoryObject factoryVariableName = new FactoryObject(customerObjectVariable, vehicleObjectVariable);
+            HayloFactory hf = new HayloFactory(hc, hVehicle);
             //ask the object to process the order
+            
             //factoryVariableName.process();
             //write code below to display the result for each order
             //??????????????????????????????????????

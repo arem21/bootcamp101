@@ -95,6 +95,7 @@ public class HayloFactory {
     //and assign it to vehicle price and fuelcell price
     private void getPricing() {
         int pos = 0;
+        String pricing [] = new String [4];
         StringTokenizer st;
         for (int i = 0; i < pricingSheet.length; i++) {
             st = new StringTokenizer(pricingSheet[i]);
@@ -104,10 +105,11 @@ public class HayloFactory {
             }
         }
         st = new StringTokenizer(pricingSheet[pos]);
-        st.nextToken();
-        st.nextToken();
-        vehiclePrice = Double.parseDouble(st.nextToken());
-        fuelCellPrice = Double.parseDouble(st.nextToken());
+        for (int i = 0; i < 4; i ++){
+            pricing[i] = st.nextToken();
+        }
+        vehiclePrice = Double.parseDouble(pricing[2]);
+        fuelCellPrice = Double.parseDouble(pricing[3]);
     }
 
     //create a public method 

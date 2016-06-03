@@ -23,7 +23,6 @@ public class HayloVehicle {
 	
 	public String toString(){
 		String summary="-------------\n";
-		
 		summary += "Vehicle Type: " + type + "\n";
 		summary += "Vehicle Number of Cells: " + nbrCells + "\n";
 		

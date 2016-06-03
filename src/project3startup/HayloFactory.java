@@ -137,9 +137,9 @@ public class HayloFactory {
         String summary = "\n"
                 + "Vehicle Cost (" + currency.format(vehiclePrice) + "/vehicle): " 
                 + currency.format(manufactureCost) + "\n"
-                + "Tanks Cost (" + currency.format(nbrFuelCells) + "/fuel cell): " 
+                + "Tanks Cost (" + currency.format(fuelCellPrice) + "/fuel cell): " 
                 + currency.format(tanksCost) + "\n"
-                + "Subtotal: " + subtotal + "\n"
+                + "Subtotal: " + currency.format(subtotal) + "\n"
                 + "Tax (7.25%): " + currency.format(tax) + "\n"
                 + "Total: " + currency.format(total);
         return summary;

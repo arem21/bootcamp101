@@ -8,7 +8,6 @@ public class HayloValidate {
 
         while (isValidName(aName) == false) {
             JOptionPane.showMessageDialog(null, aName + " is not valid");
-            System.exit(0);
         }
 
         return aName;
@@ -27,51 +26,57 @@ public class HayloValidate {
     }
 
     public static String getValidNumber(String phone) {
-        try {
-            double test = Double.parseDouble(phone);
-            if (phone.length() == 10) {
-                String phoneFormat = phone.substring(0, 3) + "-" + phone.substring(3, 6) + "-" + phone.substring(6, 10);
-                return phoneFormat;
-            } else {
+        while (true) {
+            try {
+                double test = Double.parseDouble(phone);
+                if (phone.length() == 10) {
+                    String phoneFormat = phone.substring(0, 3) + "-" + phone.substring(3, 6) + "-" + phone.substring(6, 10);
+                    return phoneFormat;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invalid phone number Length");
+                    phone = JOptionPane.showInputDialog(null, "Please Enter Phone Number");
+                }
+            } catch (NumberFormatException nfe) {
                 JOptionPane.showMessageDialog(null, "Invalid phone number");
-                System.exit(0);
+                phone = JOptionPane.showInputDialog(null, "Please Enter Phone Number");
             }
-        } catch (NumberFormatException nfe) {
-            JOptionPane.showMessageDialog(null, "Invalid phone number");
-            System.exit(0);
-
         }
-        return null;
     }
-    public static int checkVehicles(String aNbrV){
-            int aNbrVehicles;
-        try {
+
+    public static int checkVehicles(String aNbrV) {
+        int aNbrVehicles;
+        while (true) {
+            try {
                 aNbrVehicles = Integer.parseInt(aNbrV);
                 if (aNbrVehicles <= 10 && aNbrVehicles >= 1) {
-                return aNbrVehicles;
+                    return aNbrVehicles;
                 } else {
                     JOptionPane.showMessageDialog(null, "Invalid number of vehicles");
-                    System.exit(0);
+                    aNbrV = JOptionPane.showInputDialog(null, "Please enter number of vehicles");
                 }
             } catch (NumberFormatException nfe) {
                 JOptionPane.showMessageDialog(null, "Invalid number of vehicles");
-                System.exit(0);
-            } return 0;
+                aNbrV = JOptionPane.showInputDialog(null, "Please enter number of vehicles");
+            }
+        }
     }
-    public static int checkTanks(String aNbrT){
-            int aNbrTanks;
-        try {
+
+    public static int checkTanks(String aNbrT) {
+        int aNbrTanks;
+        while (true) {
+            try {
                 aNbrTanks = Integer.parseInt(aNbrT);
                 if (aNbrTanks == 2 || aNbrTanks == 4 || aNbrTanks == 8 || aNbrTanks == 10 || aNbrTanks == 15 || aNbrTanks == 20) {
                     return aNbrTanks;
                 } else {
                     JOptionPane.showMessageDialog(null, "Invalid number of tanks ex: 2,4,8,10,15 or 20");
-                    System.exit(0);
+                    aNbrT = JOptionPane.showInputDialog(null, " Please enter number of Tanks");
                 }
             } catch (NumberFormatException nfe) {
                 JOptionPane.showMessageDialog(null, "Invalid number of tanks ex: 2,4,8,10,15 or 20");
-                System.exit(0);
-            }   return 0;
+                aNbrT = JOptionPane.showInputDialog(null, " Please enter number of Tanks");
+            }
+        }
     }
-            
+
 }

@@ -33,12 +33,12 @@ public class HayloValidate {
                     String phoneFormat = phone.substring(0, 3) + "-" + phone.substring(3, 6) + "-" + phone.substring(6, 10);
                     return phoneFormat;
                 } else {
-                    JOptionPane.showMessageDialog(null, "Invalid phone number Length");
-                    phone = JOptionPane.showInputDialog(null, "Please Enter Phone Number");
+                    JOptionPane.showMessageDialog(null, "Invalid phone number");
+                    phone = JOptionPane.showInputDialog(null, "Please enter phone number");
                 }
             } catch (NumberFormatException nfe) {
                 JOptionPane.showMessageDialog(null, "Invalid phone number");
-                phone = JOptionPane.showInputDialog(null, "Please Enter Phone Number");
+                phone = JOptionPane.showInputDialog(null, "Please enter phone number");
             }
         }
     }

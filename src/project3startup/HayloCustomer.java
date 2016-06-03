@@ -40,8 +40,9 @@ public class HayloCustomer {
 		String result = "-----------------\n";
 		result += "Customer First Name: " + firstName + "\n";
 		result += "Customer Last Name: " + lastName + "\n";
-		result += "Customer Phone: " + phone;
-		
+		result += "Customer Phone: " + phone + "\n";
+		result += "Number of Vehicles:" + nbrVehicles + "\n";
+                result += "Number of Tanks: " + nbrTanks + "\n";
 		return result;
 	}
 }

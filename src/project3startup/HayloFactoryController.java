@@ -16,6 +16,7 @@ public class HayloFactoryController {
         String phone = "";
         String nbrVehicles = "";
         String nbrTanks = "";
+        String summary;
         int knownVehicles =0;
         int knownTanks =0;
 
@@ -44,7 +45,7 @@ public class HayloFactoryController {
                 nbrVehicles = tkCustomer.nextToken();
                 nbrTanks = tkCustomer.nextToken();
                 fn = hv.getValidName(fn);
-                fn = hv.getValidName(ln);
+                ln = hv.getValidName(ln);
                 phone = hv.getValidNumber(phone);
                 knownVehicles = hv.checkVehicles(nbrVehicles);
                 knownTanks = hv.checkTanks(nbrTanks);
@@ -86,10 +87,10 @@ public class HayloFactoryController {
                     "Vehicle Info\n"+
                     hVehicle.toString()+"\n"+
                     hf.getSummary();
-            JOptionPane.showMessageDialog(null, out);
+            JOptionPane.showMessageDialog(null,out,"Message", JOptionPane.INFORMATION_MESSAGE);
+            summary = hf.salesSummary();
         } while (JOptionPane.showConfirmDialog(null, "Enter More Orders?") == JOptionPane.YES_OPTION);
-
-        //write code below to display the summary for all the orders
+        JOptionPane.showMessageDialog(null,summary,"Message", JOptionPane.INFORMATION_MESSAGE);
     }
 
 }

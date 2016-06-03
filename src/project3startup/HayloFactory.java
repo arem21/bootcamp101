@@ -150,8 +150,16 @@ public class HayloFactory {
     //it is a STATIC CLASS method
     public static String salesSummary() {
         //our number formatting
-        String result = "";
+        NumberFormat currency = NumberFormat.getCurrencyInstance();
 
+        String result = 
+                "+++=======================+++\n\n"
+               + "+++     Sales Summary     +++\n\n"
+               +"+++=======================+++\n\n\n"
+                + "Total Orders Processed: " + totalOrders + "\n"
+                + "Total Vehicles Processed: " + totalVehicles +"\n"
+                + "Total Tanks Processed: " + totalTanks + "\n\n\n"
+                + "Total Sales: " + currency.format(totalSales);
         return result;
 
     }

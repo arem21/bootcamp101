@@ -56,7 +56,7 @@ public class HayloFactoryController {
             HayloCustomer hc = new HayloCustomer(fn, ln, phone, knownVehicles, knownTanks);
 
             //Present the customer with a choice of vehicles
-            String[] choices = {"EV-EX 4", "EV-EX 6", "EV-DX 9", "EV-DX 12", "EV-SX 13"};
+            String[] choices = {"EV-SX 13", "EV-DX 12", "EV-DX 9" , "EV-EX 6","EV-EX 4"};
 
             int response = JOptionPane.showOptionDialog(
                     null // center over parent
@@ -78,9 +78,15 @@ public class HayloFactoryController {
             HayloFactory hf = new HayloFactory(hc, hVehicle);
             //ask the object to process the order
             
-            //factoryVariableName.process();
+            hf.process();
             //write code below to display the result for each order
-            //??????????????????????????????????????
+            String out = "Welcome to HAYLO Manufacturing \n\n"+
+                    "Customer Info \n"+
+                    hc.toString()+ "\n"+
+                    "Vehicle Info\n"+
+                    hVehicle.toString()+"\n"+
+                    hf.toString();
+            JOptionPane.showMessageDialog(null, out);
         } while (JOptionPane.showConfirmDialog(null, "Enter More Orders?") == JOptionPane.YES_OPTION);
 
         //write code below to display the summary for all the orders

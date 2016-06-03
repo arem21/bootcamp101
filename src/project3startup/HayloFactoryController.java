@@ -85,7 +85,7 @@ public class HayloFactoryController {
                     hc.toString()+ "\n"+
                     "Vehicle Info\n"+
                     hVehicle.toString()+"\n"+
-                    hf.toString();
+                    hf.getSummary();
             JOptionPane.showMessageDialog(null, out);
         } while (JOptionPane.showConfirmDialog(null, "Enter More Orders?") == JOptionPane.YES_OPTION);
 

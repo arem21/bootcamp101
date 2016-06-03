@@ -53,13 +53,15 @@ public class HayloFactory {
 
     //Constructor
     public HayloFactory(HayloCustomer aCustomer, HayloVehicle aVehicle) {
-        nbrVehicles = aCustomer.getNbrVehicles();
-        nbrTanks = aCustomer.getNbrTanks();
-        nbrFuelCells = aVehicle.getVehicleCells();
-        type = aVehicle.getVehicleType();
+        customer = aCustomer;
+        vehicle = aVehicle; 
+        nbrVehicles = customer.getNbrVehicles();
+        nbrTanks = customer.getNbrTanks();
+        nbrFuelCells = vehicle.getVehicleCells();
+        type = vehicle.getVehicleType();
         totalOrders++;
-        totalVehicles += nbrVehicles;
-        totalTanks += nbrTanks;
+        totalVehicles += customer.getNbrVehicles();
+        totalTanks += customer.getNbrTanks();
     }
 
     //Create methods to do
@@ -94,19 +96,18 @@ public class HayloFactory {
     private void getPricing() {
         int pos = 0;
         StringTokenizer st;
-        String pricingArr[] = new String[4];
         for (int i = 0; i < pricingSheet.length; i++) {
             st = new StringTokenizer(pricingSheet[i]);
             if (st.nextToken().equals(type)) {
-                pos = i;
+                if(st.nextToken().equals(Integer.toString(nbrFuelCells)))
+                    pos = i;
             }
         }
         st = new StringTokenizer(pricingSheet[pos]);
-        for (int i = 0; i < st.countTokens(); i++) {
-            pricingArr[i] = st.nextToken();
-        }
-        vehiclePrice = Double.parseDouble(pricingArr[2]);
-        fuelCellPrice = Double.parseDouble(pricingArr[3]);
+        st.nextToken();
+        st.nextToken();
+        vehiclePrice = Double.parseDouble(st.nextToken());
+        fuelCellPrice = Double.parseDouble(st.nextToken());
     }
 
     //create a public method 

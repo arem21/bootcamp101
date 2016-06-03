@@ -19,9 +19,10 @@ public class HayloFactory {
 		 "EV-DX 12 6000 12",
 		 "EV-SX 13 7000 18"};
 	
-	//private String owner;
+	private String type;
 	private int nbrVehicles;
 	private int nbrTanks;
+        private int nbrFuelCells;
 	
 	//constants to hold our pricing properties
 	private  double vehiclePrice;
@@ -51,15 +52,13 @@ public class HayloFactory {
 
 	//Constructor
 	public HayloFactory(HayloCustomer aCustomer, HayloVehicle aVehicle){
-        nbrVehicles = aCustomer.getNbrVehicles();
-         nbrTanks = aCustomer.getNbrTanks();
-         fuelCellPrice = aVehicle.getVehicleCells();
-		//initialize our local object variables
-		//with the variables passed by the user
-		//owner = anOwner;
-
-		//Add code here to increment STATIC variables
-		
+            nbrVehicles = aCustomer.getNbrVehicles();
+            nbrTanks = aCustomer.getNbrTanks();
+            nbrFuelCells = aVehicle.getVehicleCells();
+            type = aVehicle.getVehicleType();
+            totalOrders++;
+            totalVehicles+=nbrVehicles;
+            totalTanks+=nbrTanks;
 	}
 	
 	//Create methods to do
@@ -70,29 +69,42 @@ public class HayloFactory {
 	//only accessible to the object itself
 	//the controller class cannot execute them
 	private void calcManufactureCost(){
-		
+            manufactureCost = nbrVehicles*vehiclePrice;
 	}
 	
 	private void calcTanksCost(){
-		
+            tanksCost = nbrVehicles*nbrTanks*nbrFuelCells*fuelCellPrice;
 	}
 	
 	private void calcSubtotal(){
-		
+		subtotal = manufactureCost+tanksCost;
 	}
 	
 	private void calcTax(){
-		
+		tax = subtotal*TAX_RATE;
 	}
 	
 	private void calcTotal(){
-	
+            total = subtotal + tax;
 	}
 	
 	//create method to get the pricing from pricingsheet
 	//and assign it to vehicle price and fuelcell price
 	private void getPricing(){
-
+            int pos = 0;
+            StringTokenizer st;
+            String pricingArr[] = new String[4];
+            for (int i = 0; i < pricingSheet.length; i++){
+                st = new StringTokenizer(pricingSheet[i]);
+                if (st.nextToken().equals(type))
+                    pos = i;
+            }
+            st = new StringTokenizer(pricingSheet[pos]);
+            for (int i = 0; i < st.countTokens(); i ++){
+                pricingArr[i] = st.nextToken();
+            }
+            vehiclePrice = Double.parseDouble(pricingArr[2]);
+            fuelCellPrice = Double.parseDouble(pricingArr[3]);
 	}
 	
 	//create a public method 
@@ -103,7 +115,13 @@ public class HayloFactory {
 	//executing the calculations
 	//one at a time
 	public void process(){
-
+            getPricing();
+            calcTanksCost();
+            calcManufactureCost();
+            calcSubtotal();
+            calcTax();
+            calcTotal();
+            totalSales+=total;
 	}
 	
 	

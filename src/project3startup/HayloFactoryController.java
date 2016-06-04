@@ -6,6 +6,8 @@ import javax.swing.JOptionPane;
 public class HayloFactoryController {
 
     /**
+     * Ricky Mercado CIS 234 6/6/2016
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -17,8 +19,8 @@ public class HayloFactoryController {
         String nbrVehicles = "";
         String nbrTanks = "";
         String summary;
-        int knownVehicles =0;
-        int knownTanks =0;
+        int knownVehicles = 0;
+        int knownTanks = 0;
 
         do {
 
@@ -57,7 +59,7 @@ public class HayloFactoryController {
             HayloCustomer hc = new HayloCustomer(fn, ln, phone, knownVehicles, knownTanks);
 
             //Present the customer with a choice of vehicles
-            String[] choices = {"EV-SX 13", "EV-DX 12", "EV-DX 9" , "EV-EX 6","EV-EX 4"};
+            String[] choices = {"EV-SX 13", "EV-DX 12", "EV-DX 9", "EV-EX 6", "EV-EX 4"};
 
             int response = JOptionPane.showOptionDialog(
                     null // center over parent
@@ -78,19 +80,19 @@ public class HayloFactoryController {
             //Create our factory object
             HayloFactory hf = new HayloFactory(hc, hVehicle);
             //ask the object to process the order
-            
+
             hf.process();
             //write code below to display the result for each order
-            String out = "Welcome to HAYLO Manufacturing \n\n"+
-                    "Customer Info \n"+
-                    hc.toString()+ "\n"+
-                    "Vehicle Info\n"+
-                    hVehicle.toString()+"\n"+
-                    hf.getSummary();
-            JOptionPane.showMessageDialog(null,out,"Message", JOptionPane.INFORMATION_MESSAGE);
+            String out = "Welcome to HAYLO Manufacturing \n\n"
+                    + "Customer Info \n"
+                    + hc.toString() + "\n"
+                    + "Vehicle Info\n"
+                    + hVehicle.toString() + "\n"
+                    + hf.getSummary();
+            JOptionPane.showMessageDialog(null, out, "Message", JOptionPane.INFORMATION_MESSAGE);
             summary = hf.salesSummary();
         } while (JOptionPane.showConfirmDialog(null, "Enter More Orders?") == JOptionPane.YES_OPTION);
-        JOptionPane.showMessageDialog(null,summary,"Message", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, summary, "Message", JOptionPane.INFORMATION_MESSAGE);
     }
 
 }

@@ -54,7 +54,7 @@ public class HayloFactory {
     //Constructor
     public HayloFactory(HayloCustomer aCustomer, HayloVehicle aVehicle) {
         customer = aCustomer;
-        vehicle = aVehicle; 
+        vehicle = aVehicle;
         nbrVehicles = customer.getNbrVehicles();
         nbrTanks = customer.getNbrTanks();
         nbrFuelCells = vehicle.getVehicleCells();
@@ -71,22 +71,27 @@ public class HayloFactory {
     //these methods are private and are
     //only accessible to the object itself
     //the controller class cannot execute them
+    //Calculate manufacturing cost
     private void calcManufactureCost() {
         manufactureCost = nbrVehicles * vehiclePrice;
     }
 
+    //Calculate tank cost
     private void calcTanksCost() {
         tanksCost = nbrVehicles * nbrTanks * nbrFuelCells * fuelCellPrice;
     }
 
+    //Calculate subtotal
     private void calcSubtotal() {
         subtotal = manufactureCost + tanksCost;
     }
 
+    //Calculate tax
     private void calcTax() {
         tax = subtotal * TAX_RATE;
     }
 
+    //Calculate total cost
     private void calcTotal() {
         total = subtotal + tax;
     }
@@ -95,17 +100,18 @@ public class HayloFactory {
     //and assign it to vehicle price and fuelcell price
     private void getPricing() {
         int pos = 0;
-        String pricing [] = new String [4];
+        String pricing[] = new String[4];
         StringTokenizer st;
         for (int i = 0; i < pricingSheet.length; i++) {
             st = new StringTokenizer(pricingSheet[i]);
             if (st.nextToken().equals(type)) {
-                if(st.nextToken().equals(Integer.toString(nbrFuelCells)))
+                if (st.nextToken().equals(Integer.toString(nbrFuelCells))) {
                     pos = i;
+                }
             }
         }
         st = new StringTokenizer(pricingSheet[pos]);
-        for (int i = 0; i < 4; i ++){
+        for (int i = 0; i < 4; i++) {
             pricing[i] = st.nextToken();
         }
         vehiclePrice = Double.parseDouble(pricing[2]);
@@ -137,9 +143,9 @@ public class HayloFactory {
     public String getSummary() {
         NumberFormat currency = NumberFormat.getCurrencyInstance();
         String summary = "\n"
-                + "Vehicle Cost (" + currency.format(vehiclePrice) + "/vehicle): " 
+                + "Vehicle Cost (" + currency.format(vehiclePrice) + "/vehicle): "
                 + currency.format(manufactureCost) + "\n"
-                + "Tanks Cost (" + currency.format(fuelCellPrice) + "/fuel cell): " 
+                + "Tanks Cost (" + currency.format(fuelCellPrice) + "/fuel cell): "
                 + currency.format(tanksCost) + "\n"
                 + "Subtotal: " + currency.format(subtotal) + "\n"
                 + "Tax (7.25%): " + currency.format(tax) + "\n"
@@ -154,12 +160,12 @@ public class HayloFactory {
         //our number formatting
         NumberFormat currency = NumberFormat.getCurrencyInstance();
 
-        String result = 
-                "+++=======================+++\n\n"
-               + "+++     Sales Summary     +++\n\n"
-               +"+++=======================+++\n\n\n"
+        String result
+                = "+++=======================+++\n\n"
+                + "+++     Sales Summary     +++\n\n"
+                + "+++=======================+++\n\n\n"
                 + "Total Orders Processed: " + totalOrders + "\n"
-                + "Total Vehicles Processed: " + totalVehicles +"\n"
+                + "Total Vehicles Processed: " + totalVehicles + "\n"
                 + "Total Tanks Processed: " + totalTanks + "\n\n\n"
                 + "Total Sales: " + currency.format(totalSales);
         return result;

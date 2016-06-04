@@ -4,15 +4,18 @@ import javax.swing.JOptionPane;
 
 public class HayloValidate {
 
+    //Check to see if name input is valid
     public static String getValidName(String aName) {
 
         while (isValidName(aName) == false) {
             JOptionPane.showMessageDialog(null, aName + " is not valid");
+            aName = JOptionPane.showInputDialog(null, "Please enter valid name");
         }
 
         return aName;
     }
 
+    //Check to see if length of name is valid
     private static boolean isValidName(String aName) {
         boolean result = true;
 
@@ -25,6 +28,7 @@ public class HayloValidate {
         return result;
     }
 
+    //Check to see if phone length is valid and does not contain alphabetical letters
     public static String getValidNumber(String phone) {
         while (true) {
             try {
@@ -43,6 +47,7 @@ public class HayloValidate {
         }
     }
 
+    //Check to see if vehicles are in between 1 and 10
     public static int checkVehicles(String aNbrV) {
         int aNbrVehicles;
         while (true) {
@@ -61,6 +66,7 @@ public class HayloValidate {
         }
     }
 
+    //Valid tanks are 2, 4, 8, 10, 15, 20
     public static int checkTanks(String aNbrT) {
         int aNbrTanks;
         while (true) {
